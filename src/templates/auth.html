@@ -1,0 +1,19 @@
+<div data-ng-controller="authController">
+    <button class="close" data-ng-click="toggleElement(false, true)">x</button>
+    <form name="authForm">
+        <legend data-translate="LOGIN"></legend>
+        <div>
+            <input name="login" type="text" data-translate data-translate-attr-placeholder="PLACEHOLDERLOGIN" required data-ng-model="$parent.login">
+        </div> 
+        <div>
+            <input type="password" data-translate data-translate-attr-placeholder="PLACEHOLDERPASSWORD" required data-ng-model="$parent.password">
+        </div>
+        <div>
+            <button type="button" data-ng-click="auth()" data-translate="LOGIN"></button>
+        </div>
+        <div>
+            <a href="remember-pass" data-translate="FORGOTPASSWORD"></a>
+            <a class="mobile-hide tablet-hide" href="reg" data-translate="REGNEWUSER"></a>
+        </div>
+    </form>
+</div>

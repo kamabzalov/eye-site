@@ -1,0 +1,44 @@
+<div class="formPanel">
+        <h2 data-translate="MYWALL"></h2>
+        <p data-translate="WALLNOTICE"></p>
+            
+        <div class="wallData" data-ng-if="wallImage && wallInformation">
+            <img class="img-avatar" data-ng-src="{{wallImage}}" alt="">
+            <p>{{wallInformation}}</p>
+        </div> 
+           
+        <div data-ng-if="!wallImage && !wallInformation" data-ng-controller="userController">
+            <h3 data-translate="ADDWALL"></h3>
+            <form method="post" id="wall" name="wallCreateForm" data-ng-submit="createWall();">
+                <div>
+                    <input type="file" name="wallCreateFile" id="wallCreateFile" data-ng-model="wallCreateFile" onchange="readFile(this);">
+                    <span class="icon icon-eye-camera"></span>
+                    <img src="" alt="">
+                </div>
+                <div>
+                    <textarea name="wallCreateText" data-translate data-translate-attr-placeholder="PLACEHOLDERWALLCREATETEXT" data-ng-model="$parent.wallCreateText"></textarea>
+                </div>
+                <div>
+                    <button data-translate="CREATEWALL"></button>
+                </div>
+            </form>
+        </div>
+          
+        <div data-ng-if="wallImage && wallInformation" data-ng-controller="userController">
+            <h3 data-translate="EDITWALL"></h3>
+            <form method="post" id="wall" name="wallUpdateForm" data-ng-submit="updateWall();">
+                <div>
+                    <input type="file" name="wallUpdateFile" id="wallUpdateFile" data-ng-model="wallUpdateFile">
+                    <span class="icon icon-eye-camera"></span>
+                </div>
+                <div>
+                    <textarea name="wallUpdateText" data-translate data-translate-attr-placeholder="PLACEHOLDERWALLCREATETEXT" data-ng-model="$parent.wallUpdateText"></textarea>
+                </div>
+                <div>
+                    <button data-translate="UPDATEWALL"></button>
+                </div>
+            </form>
+                
+            <button data-ng-click="deleteWall()" data-translate="DELETEWALL"></button>  
+        </div>
+</div>

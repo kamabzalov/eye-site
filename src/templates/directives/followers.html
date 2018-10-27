@@ -1,0 +1,18 @@
+<input type="text" data-ng-model="searchInFollowers" data-translate data-translate-attr-placeholder="SEARCHBYFOLLOWERS">
+<div class="dataList">
+    <ul>
+        <li data-ng-click="getUserDataById(follower.id)" data-ng-repeat="follower in myFollowersMe | filter : searchInFollowers">
+            <div data-ng-if="follower.avatar">
+                <img data-ng-if="follower.type!=0" data-ng-src="https://api.eyeinc.ru/assets/avatars/{{follower.avatar}}" alt="">
+                <img data-ng-if="follower.type==0"  data-ng-src="{{follower.avatar}}">
+            </div>
+            <span class="empty-avatar" data-ng-if="!follower.avatar"></span>
+            <p>{{follower.name}}</p>
+            <ul>
+                <li><i class="icon icon-eye-plus"></i> {{follower.followers}}</li>
+				<li><i class="icon icon-eye-view"></i> {{follower.watchers}}</li>
+				<li><i class="icon icon-eye-bell"></i> {{follower.likes}}</li>
+            </ul>
+        </li>
+    </ul>
+</div>

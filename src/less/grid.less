@@ -1,0 +1,107 @@
+@containerWidth: 90%;
+@columns: 12;
+@paddings: 30px;
+
+@small: 767px;
+@medium: 768px;
+@large: 1200px;
+@small-prefix: eye-x;
+@medium-prefix: eye-m;
+@large-prefix: eye-l;
+
+
+.clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+.eye-container {
+    width: @containerWidth;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: @paddings / 2;
+    padding-right: @paddings / 2;
+    .clearfix();
+}
+
+.eye-container-full {
+    padding-left: @paddings / 2;
+    padding-right: @paddings / 2;
+    .clearfix();
+}
+
+.eye-row {
+    margin-left: -@paddings / 2;
+    margin-right: -@paddings / 2;
+    .clearfix();
+}
+
+// Колонки по умолчанию
+.eye-columns() {
+  .col(@index) {
+    @item: ~".eye-x-@{index}, .eye-m-@{index}, .eye-l-@{index}";
+    .col((@index + 1), @item);
+  }
+  .col(@index, @list) when (@index =< @columns) {
+    @item: ~".eye-x-@{index}, .eye-m-@{index}, .eye-l-@{index}";
+    .col((@index + 1), ~"@{list}, @{item}");
+  }
+  .col(@index, @list) when (@index > @columns) {
+    @{list} {
+      position: relative;
+      min-height: 1px;
+      padding-left:  @paddings / 2;
+      padding-right: @paddings / 2;
+    }
+  }
+  .col(1);
+}
+
+.eye-columns();
+
+.eye-float-columns(@class) {
+    .col(@index) {
+      @item: ~".@{class}-@{index}";
+      .col((@index + 1), @item);
+    }
+    .col(@index, @list) when (@index =< @columns) {
+      @item: ~".@{class}-@{index}";
+      .col((@index + 1), ~"@{list}, @{item}");
+    }
+    .col(@index, @list) when (@index > @columns) {
+      @{list} {
+        float: left;
+        position: relative;
+      }
+    }
+    .col(1);
+}
+
+.eye-width-columns(@class) {
+    .col(@index) when (@index =< @columns) {
+        .@{class}-@{index} {
+            width: @index * (100% / @columns);
+        }
+        .col(@index+1);
+    }
+    .col(1);
+}
+
+.eye-float-columns(@small-prefix);
+.eye-width-columns(@small-prefix);
+
+@media(min-width:@medium) {
+    .eye-float-columns(@medium-prefix);
+    .eye-width-columns(@medium-prefix);
+}
+
+@media(min-width:@large) {
+    .eye-float-columns(@large-prefix);
+    .eye-width-columns(@large-prefix);
+}

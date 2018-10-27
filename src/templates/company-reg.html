@@ -1,0 +1,94 @@
+<div data-ng-controller="regController">
+    <button class="close" data-ng-click="toggleElement(false, true)">x</button>
+    <form name="companyRegForm" method="post">
+        <legend data-traslate="REGNEWCOMPANY">
+            <button id="prev" data-ng-click="nextStep(-1);">&lt;</button>
+            {{"REGNEWCOMPANY" | translate}}
+        </legend>
+        <div class="step">
+                <p>{{"REGISTERNOTICE" | translate}} <a href="https://eyeinc.ru/agreement/" style="color:#fff;" target="_blank" data-traslate="TERMSOFUSE"></a></p>
+            <div>
+                <input type="text" autocomplete="phone" name="login" id="phone" data-translate data-translate-attr-placeholder="PLACEHOLDERPHONE" data-ng-model="$parent.phone" required />
+            </div>
+            <div>
+                <input type="email" autocomplete="email" name="email" id="email" data-translate data-translate-attr-placeholder="PLACEHOLDEREMAIL" data-ng-model="$parent.email" required />
+            </div> 
+            <div>
+                <label><input type="checkbox" id="isEmail" data-ng-model="isEmail"><span></span>{{"SENDCODETOEMAIL" | translate}}</label>
+            </div>
+            <div>
+                <button type="button" data-ng-click="startCompanyReg();" data-translate="NEXTBUTTON"></button>
+            </div>
+        </div>
+
+        <div class="step">
+                <p>{{"NOTERECEIVECODE" | translate}} <a data-ng-click="makeCodeRequest()" data-translate="TRYMORE"></a></p>
+            <div>
+                <input type="text" autocomplete="code" name="code" id="code" data-translate data-translate-attr-placeholder="PLACEHOLDERCODE" data-ng-model="$parent.code" required />
+            </div>
+            <div>
+                <button type="button" data-ng-click="middleCompanyReg();" data-translate="NEXTBUTTON"></button>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="fileField">
+                <input type="file" name="user-avatar" id="user-avatar" onchange="readFile(this);">
+                <span class="icon icon-eye-plus"></span>
+                <img src="" alt="" class="previewAvatar">
+            </div>
+            <div>
+                <input type="text" autocomplete="company" name="company" id="company" data-translate data-translate-attr-placeholder="PLACEHOLDERCOMPANYNAME" data-ng-model="$parent.company" required />
+            </div>
+            <div>
+                <input type="password" autocomplete="password" id="password" data-translate data-translate-attr-placeholder="PLACEHOLDERPASSWORD" data-ng-model="$parent.password" required />
+            </div>
+            <div>
+                <input type="password" autocomplete="repeatPassword" name="repeatPassword" id="repeatPassword" data-translate data-translate-attr-placeholder="PLACEHOLDERREPEATPASSWORD" data-ng-model="$parent.repeatPassword" required data-ng-class="{'ng-invalid': repeatPassword != password}" />
+            </div>
+            <div>
+                <input type="text" autocomplete="calls" name="calls" id="calls" data-translate data-translate-attr-placeholder="PLACEHOLDERCALLS" data-ng-model="$parent.calls" required />
+            </div>
+            <div>
+                <input type="text" autocomplete="address" name="address" id="address" data-translate onkeydown="makeAutoComplete(this.id);" onkeyup="codeAddress(this.id);" data-translate-attr-placeholder="PLACEHOLDERADDRESS" data-ng-model="$parent.address" required />
+            </div>
+            <div>
+                <select name="category" id="category" data-ng-model="category" required="true">
+                    <option value="">{{"CHOOSECATEGORY" | translate}}</option>
+                    <option value="Ночной клуб">{{"NIGHTCLUB" | translate}}</option>
+                    <option value="Бар">{{"BAR" | translate}}</option>
+                    <option value="Караоке">{{"KARAOKE" | translate}}</option>
+                    <option value="Кафе">{{"CAFE" | translate}}</option>
+                    <option value="Ресторан">{{"RESTAURANT" | translate}}</option>
+                    <option value="Кальянная">{{"HOOKAH" | translate}}</option>
+                    <option value="Гостиница">{{"HOSTEL" | translate}}</option>
+                    <option value="Отель">{{"HOTEL" | translate}}</option>
+                    <option value="Фитнес">{{"FITNESS" | translate}}</option>
+                    <option value="Мода">{{"FASHION" | translate}}</option>
+                    <option value="Искусство">{{"ART" | translate}}</option>
+                    <option value="Игры">{{"GAMES" | translate}}</option>
+                    <option value="Аквапарк">{{"AQUAPARK" | translate}}</option>
+                    <option value="Сервис">{{"SERVICE" | translate}}</option>
+                    <option value="Торговый Центр">{{"SHOPPING CENTER" | translate}}</option>
+                    <option value="Магазин">{{"SHOP" | translate}}</option>
+                    <option value="Бизнес Центр">{{"BUSINESS CENTER" | translate}}</option>
+                    <option value="Детский Сад">{{"KINDERGARTEN CENTER" | translate}}</option>
+                    <option value="Образование">{{"EDUCATION" | translate}}</option>
+                    <option value="Медицина">{{"MEDICINE" | translate}}</option>
+                    <option value="Канал">{{"CHANNEL" | translate}}</option>
+                    <option value="Частное">{{"PRIVATE" | translate}}</option>
+                    <option value="Нет катеогрии">{{"NO CATEGORY" | translate}}</option>
+                </select>
+            </div>
+            <div>
+                <button type="button" data-ng-click="finishCompanyReg();" data-translate="NEXTBUTTON"></button>
+            </div>
+        </div>
+
+        <div class="step">
+            <a class="btn" href="https://eyeinc.ru/software/exe/setup.exe" download data-translate="DOWNLOADWINDOWS"></a>
+            <a class="btn" href="https://eyeinc.ru/software/pkg/EyeStreamer.pkg" download data-translate="DOWNLOADMAC"></a>
+            <button type="button" data-ng-click="authCompany()" data-translate="START"></button>
+        </div>
+    </form>
+</div>
